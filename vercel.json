@@ -1,0 +1,1 @@
+{"routes":[{"src":"/admin/(.*)","dest":"https://hexopp.liborui77.workers.dev/hpp/admin/dash/$1"}]}
