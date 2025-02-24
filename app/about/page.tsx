@@ -19,7 +19,6 @@ export default async function About() {
 						</h1>
 					</div>
 				</div>
-				{/* TODO: 阅读量？ */}
 			</section>
 			<div className='container-wrapper h-full overflow-auto flex-1'>
 				<div className='container py-6'>
