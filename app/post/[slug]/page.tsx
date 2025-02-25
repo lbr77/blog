@@ -19,7 +19,7 @@ export default async function Post({
 	})
 	const postInfo = await (
 		await fetch(`https://nvme0n1p.dev/v2/posts/${slug}?info=true`,{
-            cache: 'force-cache',
+            cache: 'no-cache',
         })
 	).json()
 	if(!postInfo.post) {

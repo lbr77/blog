@@ -20,7 +20,7 @@ export default async function Index({
 	const res = await fetch(
 		`https://nvme0n1p.dev/v2/posts?page=${page}&length=${size}`,
 		{
-			cache: 'force-cache',
+			cache: 'no-cache',
 		},
 	)
 	const data = await res.json()

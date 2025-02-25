@@ -5,6 +5,5 @@ const nextConfig: NextConfig = {
     remotePatterns: [
     ]
   },
-  output: 'standalone',
 };
 export default nextConfig;

@@ -8,7 +8,10 @@ export default async function CategoriesDetail({
 	searchParams: Promise<{ page?: string }>
 }) {
 	const slug = (await params).slug as string;
-	const {posts} = (await fetch(`https://nvme0n1p.dev/v2/posts/tag/${slug}`).then(
+	const {posts} = (await fetch(`https://nvme0n1p.dev/v2/posts/tag/${slug}`,
+		{
+			cache: 'no-cache',
+		},).then(
 		res => res.json(),
 	)) as {
 		posts: PostCardProps[]

@@ -6,7 +6,10 @@ type PostDiv = {
 }
 
 export default async function Archives() {
-    const { posts } = await fetch('https://nvme0n1p.dev/v2/posts').then((res) =>
+    const { posts } = await fetch('https://nvme0n1p.dev/v2/posts',
+		{
+			cache: 'no-cache',
+		},).then((res) =>
         res.json(),
     )
     const yearDiv: PostDiv = {}

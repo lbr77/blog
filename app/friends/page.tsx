@@ -1,7 +1,10 @@
 import { FriendCardProps,FriendCard } from "@/components/friend-card"
 
 export default async function Friends() {
-    const links = await fetch('https://nvme0n1p.dev/v2/links').then(res => res.json())
+    const links = await fetch('https://nvme0n1p.dev/v2/links',
+		{
+			cache: 'no-cache',
+		},).then(res => res.json())
 	return (
 		<>
 			<section className='border-grid border-b'>

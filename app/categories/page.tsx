@@ -1,7 +1,10 @@
 import Link from "next/link"
 
 export default async function Categories() {
-    const tags = await fetch("https://nvme0n1p.dev/v2/posts/tag").then(res => res.json())
+    const tags = await fetch("https://nvme0n1p.dev/v2/posts/tag",
+		{
+			cache: 'no-cache',
+		},).then(res => res.json())
     return (
         <>
             <section className='border-grid border-b'>
