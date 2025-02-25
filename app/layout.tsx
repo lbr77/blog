@@ -19,7 +19,13 @@ export const metadata: Metadata = {
 	description: "LiBr's notebook",
 	icons: [
 		"favicon.png"
-	]
+	],
+	alternates: {
+		canonical: 'https://nvme0n1p.dev',
+		types: {
+			'application/rss+xml': '/feed.xml',
+		}
+	}
 }
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
