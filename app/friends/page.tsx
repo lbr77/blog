@@ -1,10 +1,14 @@
-import { FriendCardProps,FriendCard } from "@/components/friend-card"
+import { FriendCardProps, FriendCard } from '@/components/friend-card'
+import { Metadata } from 'next'
 export const dynamic = 'force-dynamic'
+export const metadata: Metadata = {
+	title: '朋友们 | 溴化锂的笔记本',
+	icons: ['favicon.png'],
+}
 export default async function Friends() {
-    const links = await fetch('https://nvme0n1p.dev/v2/links',
-		{
-			cache: 'no-store',
-		},).then(res => res.json())
+	const links = await fetch('https://nvme0n1p.dev/v2/links', {
+		cache: 'no-store',
+	}).then(res => res.json())
 	return (
 		<>
 			<section className='border-grid border-b'>
@@ -13,19 +17,19 @@ export default async function Friends() {
 						<h1 className='text-xl font-semibold leading-tight tracking-tighter md:text-4xl lg:leading-[1.1]'>
 							朋友们
 						</h1>
-                        <p className='max-w-2xl text-balance text-lg font-light text-foreground'>
+						<p className='max-w-2xl text-balance text-lg font-light text-foreground'>
 							网络邻居！
 						</p>
 					</div>
 				</div>
 			</section>
-            <div className='container-wrapper h-full overflow-auto flex-1'>
-                <div className='grid grid-cols-1 lg:grid-cols-2'>
-					{links.map((l: FriendCardProps,) => (
+			<div className='container-wrapper h-full overflow-auto flex-1'>
+				<div className='grid grid-cols-1 lg:grid-cols-2'>
+					{links.map((l: FriendCardProps) => (
 						<FriendCard key={l.id} {...l} />
 					))}
-                </div>
-            </div>
+				</div>
+			</div>
 		</>
 	)
 }

@@ -8,6 +8,26 @@ const getDate = (date: string) => {
 	return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`
 }
 export const dynamic = 'force-dynamic'
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ slug?: string }>
+}) {
+	const slug = (await params).slug as string
+	const postInfo = await fetch(
+		`https://nvme0n1p.dev/v2/posts/${slug}?info=true`,
+	).then(res => res.json())
+	if (!postInfo.post) {
+		return {
+			title: '404 | 溴化锂的笔记本',
+		}
+	}
+
+	return {
+		title: `${postInfo.post.Content} | 溴化锂的笔记本`,
+		icons: ['favicon.png'],
+	}
+}
 export default async function Post({
 	params,
 }: {
@@ -18,12 +38,13 @@ export default async function Post({
 		authToken: NOTION_API.autoToken,
 		activeUser: NOTION_API.activeUser,
 	})
-	const postInfo = await (
-		await fetch(`https://nvme0n1p.dev/v2/posts/${slug}?info=true`,{
-            cache: 'no-store',
-        })
-	).json()
-	if(!postInfo.post) {
+	const postInfo = await fetch(
+		`https://nvme0n1p.dev/v2/posts/${slug}?info=true`,
+		{
+			cache: 'no-store',
+		},
+	).then(res => res.json())
+	if (!postInfo.post) {
 		return <NotFound />
 	}
 	const recordMap = await notion.getPage(postInfo.post.id)

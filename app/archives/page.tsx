@@ -1,6 +1,9 @@
 import { PostCardProps } from "@/components/post-card"
+import { Metadata } from "next"
 import Link from "next/link"
-
+export const metadata: Metadata = {
+    title: "归档 | 溴化锂的笔记本"
+}
 type PostDiv = {
     [year: number]: PostCardProps[]
 }

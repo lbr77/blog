@@ -1,6 +1,16 @@
 import NotFound from '@/app/not-found';
 import { PostCard,PostCardProps } from '@/components/post-card'
 export const dynamic = 'force-dynamic'
+export async function generateMetadata({ params }: {
+    params: Promise<{ slug?: string }>
+}) {
+	const slug = (await params).slug as string;
+    
+    return {
+        title: `分类：${decodeURI(slug)} | 溴化锂的笔记本`,
+        description: `查看分类 ${decodeURI(slug)} 下的所有文章`,
+    }
+}
 export default async function CategoriesDetail({
 	params,
 }: {

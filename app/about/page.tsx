@@ -2,7 +2,11 @@ import { NotionRenderer } from '@/components/notion-renderer'
 import { NotionAPI } from 'notion-client'
 import { NOTION_API, NOTION_DB } from '@/config/site'
 import { Twikoo } from '@/components/comments'
-
+import { Metadata } from 'next'
+export const metadata : Metadata = {
+	title: '关于 | 溴化锂的笔记本',
+	icons: ['favicon.png'],
+}
 export default async function About() {
 	const notion = new NotionAPI({
 		authToken: NOTION_API.autoToken,

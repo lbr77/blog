@@ -11,7 +11,6 @@ import { SiteFooter } from '@/components/site-footer'
 import { ThemeProvider } from '@/components/providers/theme-provider'
 import { Toaster } from '@/components/ui/toaster'
 import { Toaster as Sonner } from '@/components/ui/sonner'
-// import { META_THEME_COLORS } from '@/config/site'
 import { LoadingBar } from '@/components/loading'
 import { Suspense } from 'react'
 export const metadata: Metadata = {

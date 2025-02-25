@@ -8,9 +8,21 @@ import {
 	PaginationLink,
 	PaginationEllipsis,
 } from '@/components/ui/pagination'
-import { PostCard,PostCardProps } from '@/components/post-card'
+import { PostCard, PostCardProps } from '@/components/post-card'
 import NotFound from './not-found'
 export const dynamic = 'force-dynamic'
+export async function generateMetadata({
+	searchParams,
+}: {
+	searchParams: Promise<{ page?: string }>
+}) {
+	const page = (await searchParams).page || 1
+	return {
+		title: `${page == 1 ? '首页' : '第' + page + '页'} | 溴化锂的笔记本`,
+		description: `第 ${page} 页的文章`,
+		icons: ['favicon.png'],
+	}
+}
 export default async function Index({
 	searchParams,
 }: {
@@ -27,7 +39,7 @@ export default async function Index({
 	const data = await res.json()
 	const posts = data.posts
 	const length = data.length
-	if(!posts.length) {
+	if (!posts.length) {
 		return <NotFound />
 	}
 	return (
