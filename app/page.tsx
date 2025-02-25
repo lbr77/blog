@@ -9,7 +9,7 @@ import {
 	PaginationEllipsis,
 } from '@/components/ui/pagination'
 import { PostCard,PostCardProps } from '@/components/post-card'
-
+export const dynamic = 'force-dynamic'
 export default async function Index({
 	searchParams,
 }: {
@@ -20,7 +20,7 @@ export default async function Index({
 	const res = await fetch(
 		`https://nvme0n1p.dev/v2/posts?page=${page}&length=${size}`,
 		{
-			cache: 'no-cache',
+			cache: 'no-store',
 		},
 	)
 	const data = await res.json()

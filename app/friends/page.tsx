@@ -1,9 +1,9 @@
 import { FriendCardProps,FriendCard } from "@/components/friend-card"
-
+export const dynamic = 'force-dynamic'
 export default async function Friends() {
     const links = await fetch('https://nvme0n1p.dev/v2/links',
 		{
-			cache: 'no-cache',
+			cache: 'no-store',
 		},).then(res => res.json())
 	return (
 		<>

@@ -4,11 +4,11 @@ import Link from "next/link"
 type PostDiv = {
     [year: number]: PostCardProps[]
 }
-
+export const dynamic = 'force-dynamic'
 export default async function Archives() {
     const { posts } = await fetch('https://nvme0n1p.dev/v2/posts',
 		{
-			cache: 'no-cache',
+			cache: 'no-store',
 		},).then((res) =>
         res.json(),
     )

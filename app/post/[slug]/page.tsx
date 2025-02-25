@@ -7,6 +7,7 @@ const getDate = (date: string) => {
 	const d = new Date(date)
 	return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`
 }
+export const dynamic = 'force-dynamic'
 export default async function Post({
 	params,
 }: {
@@ -19,7 +20,7 @@ export default async function Post({
 	})
 	const postInfo = await (
 		await fetch(`https://nvme0n1p.dev/v2/posts/${slug}?info=true`,{
-            cache: 'no-cache',
+            cache: 'no-store',
         })
 	).json()
 	if(!postInfo.post) {

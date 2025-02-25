@@ -1,6 +1,6 @@
 import NotFound from '@/app/not-found';
 import { PostCard,PostCardProps } from '@/components/post-card'
-
+export const dynamic = 'force-dynamic'
 export default async function CategoriesDetail({
 	params,
 }: {
@@ -10,7 +10,7 @@ export default async function CategoriesDetail({
 	const slug = (await params).slug as string;
 	const {posts} = (await fetch(`https://nvme0n1p.dev/v2/posts/tag/${slug}`,
 		{
-			cache: 'no-cache',
+			cache: 'no-store',
 		},).then(
 		res => res.json(),
 	)) as {

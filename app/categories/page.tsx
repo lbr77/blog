@@ -1,9 +1,9 @@
 import Link from "next/link"
-
+export const dynamic = 'force-dynamic'
 export default async function Categories() {
     const tags = await fetch("https://nvme0n1p.dev/v2/posts/tag",
 		{
-			cache: 'no-cache',
+			cache: 'no-store',
 		},).then(res => res.json())
     return (
         <>

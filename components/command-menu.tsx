@@ -24,7 +24,6 @@ interface SearchResult {
 	description?: string
 	url: string
 }
-
 export function CommandMenu({ ...props }: DialogProps) {
 	const router = useRouter()
 	const searchClient = algoliasearch(
