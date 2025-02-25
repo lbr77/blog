@@ -9,6 +9,7 @@ import {
 	PaginationEllipsis,
 } from '@/components/ui/pagination'
 import { PostCard,PostCardProps } from '@/components/post-card'
+import NotFound from './not-found'
 export const dynamic = 'force-dynamic'
 export default async function Index({
 	searchParams,
@@ -26,6 +27,9 @@ export default async function Index({
 	const data = await res.json()
 	const posts = data.posts
 	const length = data.length
+	if(!posts.length) {
+		return <NotFound />
+	}
 	return (
 		<>
 			<section className='border-grid border-b'>
