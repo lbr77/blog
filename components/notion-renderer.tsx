@@ -58,6 +58,7 @@ export function NotionRenderer({
 			hideBlockId={true}
 			darkMode={theme === 'dark'}
 			forceCustomImages={true}
+			showTableOfContents={true}
 		/>
 	)
 }

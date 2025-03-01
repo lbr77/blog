@@ -12,7 +12,7 @@ html {
 	transition: background-color var(--transition-duration) ease,
 		color var(--transition-duration) ease;
 }
-*,
+/* *,
 *::before,
 *::after {
 	transition: background-color var(--transition-duration) ease,
@@ -20,7 +20,15 @@ html {
 		color var(--transition-duration) ease,
 		fill var(--transition-duration) ease,
 		stroke var(--transition-duration) ease;
+} */
+
+html, 
+body {
+  	transition: background-color var(--transition-duration) ease, 
+              	color var(--transition-duration) ease,
+              	border-color var(--transition-duration) ease;
 }
+
 @layer base {
 	:root {
 		--background: 0 0% 100%;

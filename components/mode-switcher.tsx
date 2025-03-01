@@ -6,20 +6,27 @@ import { useTheme } from 'next-themes'
 
 import { META_THEME_COLORS } from '@/config/site'
 import { useMetaColor } from '@/hooks/use-meta-color'
+import { useThemeAnimation } from '@/hooks/use-theme-animation'
 import { Button } from '@/components/ui/button'
 
 export function ModeSwitcher() {
 	const { setTheme, resolvedTheme } = useTheme()
 	const { setMetaColor } = useMetaColor()
+	const toggleThemeWithAnimation = useThemeAnimation()
 
-	const toggleTheme = React.useCallback(() => {
-		setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
-		setMetaColor(
-			resolvedTheme === 'dark'
-				? META_THEME_COLORS.light
-				: META_THEME_COLORS.dark,
-		)
-	}, [resolvedTheme, setTheme, setMetaColor])
+	const toggleTheme = React.useCallback(
+		(e: React.MouseEvent<HTMLElement>) => {
+			const isDark = resolvedTheme === 'dark'
+
+			toggleThemeWithAnimation(e, isDark, () => {
+				setTheme(isDark ? 'light' : 'dark')
+				setMetaColor(
+					isDark ? META_THEME_COLORS.light : META_THEME_COLORS.dark,
+				)
+			})
+		},
+		[resolvedTheme, setTheme, setMetaColor, toggleThemeWithAnimation],
+	)
 
 	return (
 		<Button

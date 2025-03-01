@@ -2,7 +2,7 @@ import Link from 'next/link'
 import * as React from 'react'
 import Image from 'next/image'
 export function MainNav() {
-	const linkClass = 'text-sm md:text-base text-foreground hover:text-blue-800'
+	const linkClass = 'text-sm md:text-base text-foreground hover:text-blue-800 dark:hover:text-blue-300'
 	return (
 		<div className='mr-4 hidden md:flex'>
 				<Link href='/'>
