@@ -11,20 +11,18 @@ import { SiteFooter } from '@/components/site-footer'
 import { ThemeProvider } from '@/components/providers/theme-provider'
 import { Toaster } from '@/components/ui/toaster'
 import { Toaster as Sonner } from '@/components/ui/sonner'
-import { LoadingBar } from '@/components/loading'
+import { ProgressProvider } from '@/components/providers/progress-provider'
 import { Suspense } from 'react'
 export const metadata: Metadata = {
 	title: '溴化锂的笔记本',
 	description: "LiBr's notebook",
-	icons: [
-		"favicon.png"
-	],
+	icons: ['favicon.png'],
 	alternates: {
 		canonical: 'https://nvme0n1p.dev',
 		types: {
 			'application/rss+xml': '/feed.xml',
-		}
-	}
+		},
+	},
 }
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
@@ -49,30 +47,31 @@ export default function RootLayout({
 					GeistMono.variable,
 				)}
 			>
-				<Suspense fallback={null}> 
-					<LoadingBar />
+				<Suspense fallback={null}>
 					<ThemeProvider
 						attribute='class'
 						defaultTheme='light'
 						enableSystem
 						enableColorScheme
 					>
-						<div vaul-drawer-wrapper=''>
-							<div className='relative flex flex-col bg-background min-h-screen'>
-								<div
-									data-wrapper=''
-									className='border-grid flex flex-1 flex-col'
-								>
-									<SiteHeader />
-									<main className='flex flex-1 flex-col'>
-										{children}
-									</main>
-									<SiteFooter />
+						<ProgressProvider height="4px" color="#ffd000" options={{ showSpinner: true }} shallowRouting>
+							<div vaul-drawer-wrapper=''>
+								<div className='relative flex flex-col bg-background min-h-screen'>
+									<div
+										data-wrapper=''
+										className='border-grid flex flex-1 flex-col'
+									>
+										<SiteHeader />
+										<main className='flex flex-1 flex-col'>
+											{children}
+										</main>
+										<SiteFooter />
+									</div>
 								</div>
 							</div>
-						</div>
-						<Toaster />
-						<Sonner />
+							<Toaster />
+							<Sonner />
+						</ProgressProvider>
 					</ThemeProvider>
 				</Suspense>
 			</body>
