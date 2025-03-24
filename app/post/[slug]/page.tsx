@@ -3,6 +3,7 @@ import { NotionAPI } from 'notion-client'
 import { NOTION_API } from '@/config/site'
 import { Twikoo } from '@/components/comments'
 import NotFound from '@/app/not-found'
+import { BlogPosting, WithContext } from 'schema-dts'
 const getDate = (date: string) => {
 	const d = new Date(date)
 	return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`
@@ -33,6 +34,7 @@ export default async function Post({
 }: {
 	params: Promise<{ slug?: string }>
 }) {
+	
 	const slug = (await params).slug
 	const notion = new NotionAPI({
 		authToken: NOTION_API.autoToken,
@@ -44,12 +46,20 @@ export default async function Post({
 			cache: 'no-store',
 		},
 	).then(res => res.json())
+	const jsonLD: WithContext<BlogPosting> = {
+		"@context": "https://schema.org",
+		"@type": "BlogPosting",
+		"@id": `https://nvme0n1p.dev/post/${slug}`,
+		"name": `${postInfo.post.Content} | 溴化锂的笔记本`,
+		"description": postInfo.post.excerpt
+	}
 	if (!postInfo.post) {
 		return <NotFound />
 	}
 	const recordMap = await notion.getPage(postInfo.post.id)
 	return (
 		<>
+			<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLD) }} />
 			<section className='border-grid border-b'>
 				<div className='container-wrapper'>
 					<div className='container flex flex-col items-center gap-1 py-8 md:py-10 lg:py-6'>
@@ -68,6 +78,11 @@ export default async function Post({
 			<div className='container-wrapper h-full overflow-auto flex-1'>
 				<div className='container py-6'>
 					<NotionRenderer recordMap={recordMap} />
+				</div>
+			</div>
+			<div className='container-wrapper border-t'>
+				<div className='container w-full md:w-[720px]'>
+					{/* Next / Previous */}
 				</div>
 			</div>
 			<div className='container-wrapper border-t'>

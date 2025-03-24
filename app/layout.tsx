@@ -33,13 +33,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='zh-cn' suppressHydrationWarning>
-			<head>
-				{/* <script
-					dangerouslySetInnerHTML={{
-						__html: `try {if (localStorage.theme === 'dark' || ((!('theme' in localStorage) || localStorage.theme === 'system') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {document.querySelector('meta[name="theme-color"]').setAttribute('content', '${META_THEME_COLORS.dark}');}} catch (_) {}`,
-					}}
-				/> */}
-			</head>
+			<head><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8340918938706383" crossOrigin="anonymous"></script></head>
 			<body
 				className={cn(
 					'min-h-svh bg-background font-sans antialiased',
@@ -50,7 +44,7 @@ export default function RootLayout({
 				<Suspense fallback={null}>
 					<ThemeProvider
 						attribute='class'
-						defaultTheme='light'
+						defaultTheme='system'
 						enableSystem
 						enableColorScheme
 					>
