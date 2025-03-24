@@ -46,15 +46,16 @@ export default async function Post({
 			cache: 'no-store',
 		},
 	).then(res => res.json())
+	if (!postInfo.post) {
+		return <NotFound />
+	}
+
 	const jsonLD: WithContext<BlogPosting> = {
 		"@context": "https://schema.org",
 		"@type": "BlogPosting",
 		"@id": `https://nvme0n1p.dev/post/${slug}`,
 		"name": `${postInfo.post.Content} | 溴化锂的笔记本`,
 		"description": postInfo.post.excerpt
-	}
-	if (!postInfo.post) {
-		return <NotFound />
 	}
 	const recordMap = await notion.getPage(postInfo.post.id)
 	return (
